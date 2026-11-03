@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Tabuada Interativo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef3f9;
+            display: flex;
+            justify-content: center;
+            padding: 40px 16px;
+            margin: 0;
+        }
+        .card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 420px;
+            padding: 28px;
+            border-radius: 12px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+        }
+        h1 {
+            color: #1f4e79;
+            font-size: 24px;
+            text-align: center;
+            margin-top: 0;
+        }
+        .form {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        input {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #b7c4d4;
+            border-radius: 6px;
+        }
+        button {
+            padding: 10px 16px;
+            font-size: 16px;
+            background: #1f4e79;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #2c6aa3;
+        }
+        #resultado {
+            line-height: 1.8;
+            margin-top: 15px;
+        }
+        .erro {
+            color: #c0392b;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Gerador de Tabuada Interativo</h1>
+
+        <div class="form">
+            <input type="number" id="numero" min="1" max="10" placeholder="Digite um número de 1 a 10">
+            <button id="BotaoGerar">Gerar</button>
+        </div>
+
+        <div id="resultado"></div>
+    </div>
+
+    <script>
+        const resultado = document.getElementById("resultado");
+        const campo = document.getElementById("numero");
+        const botao = document.getElementById("BotaoGerar");
+
+        function gerarTabuada(numero) {
+            if (isNaN(numero) || numero < 1 || numero > 10) {
+                resultado.innerHTML = '<p class="erro">Por favor, digite um número válido entre 1 e 10.</p>';
+                return;
+            }
+
+            let conteudo = `<h2>Tabuada do ${numero}</h2>`;
+
+            for (let i = 1; i < 11; i++) {
+                conteudo += `${numero} x ${i} = ${numero * i}<br>`;
+            }
+
+            resultado.innerHTML = conteudo;
+        }
+
+        botao.addEventListener("click", function () {
+            gerarTabuada(parseInt(campo.value));
+        });
+    </script>
+</body>
+</html>
